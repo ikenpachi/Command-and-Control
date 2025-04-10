@@ -11,7 +11,8 @@ This project simulates a typical **Command and Control (C&C)** scenario used in 
 
 The **server** listens for connections from **bot clients**, which automatically connect to the C2 host and wait for instructions. Once connected, the server sends OS-level commands (e.g. `whoami`, `dir`, etc.), and the bot executes them and returns the results.
 
-**In the screenshot below** , the server (left side) is sending commands to the bot client (right side), which executes and returns the output back.
+**In the screenshot below** ![Captura de tela 2025-04-10 164815](https://github.com/user-attachments/assets/26c6593a-5732-4c68-8f02-2ff9f79e2a5c)
+, the server (left side) is sending commands to the bot client (right side), which executes and returns the output back.
 
 ---
 
@@ -24,12 +25,14 @@ The **server** listens for connections from **bot clients**, which automatically
 
 ---
 
-## Project Structure
-mini_c2/ 
-├── c2_server.py # C2 Server - listens for bots and sends commands 
-├── bot_client.py # Bot Client - connects to server and executes commands 
-└── utils/ # (optional) Helper scripts and modules
 
+## 📁 Project Structure
+```markdown
+mini_c2/  
+├── c2_server.py     # C2 Server - listens for bots and sends commands  
+├── bot_client.py    # Bot Client - connects to server and executes commands  
+└── utils/           # Helper scripts and modules  
+```
 
 ---
 
