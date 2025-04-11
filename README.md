@@ -25,12 +25,16 @@ The **server** listens for connections from **bot clients**, which automatically
 ---
 
 ## Project Structure
-mini_c2/ 
-├── c2_server.py # C2 Server - listens for bots and sends commands 
-├── bot_client.py # Bot Client - connects to server and executes commands 
-└── utils/ # (optional) Helper scripts and modules
-
-
+```bash
+mini_c2/
+├── c2_server.py
+├── bot_client.py
+├── modules/
+│   └── commands.py   
+├── utils/
+│   └── helpers.py      
+└── README.md
+```
 ---
 
 ## How to Use
