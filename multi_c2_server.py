@@ -23,7 +23,6 @@ def handle_bot(client_socket, addr, bot_id):
         server_public_bytes = key_exchange.get_public_bytes(server_private_key)
         client_socket.send(server_public_bytes)
 
-        # Recebe a chave pública do bot (com checagem de tamanho)
         try:
             bot_public_bytes = client_socket.recv(4096)
             bot_public_key = key_exchange.load_peer_public_bytes(bot_public_bytes)
@@ -33,8 +32,7 @@ def handle_bot(client_socket, addr, bot_id):
             client_socket.close()
             return
 
-        # Recebe info do bot
-        bot_info = aes_crypto.decrypt(client_socket.recv(1024), session_key)
+        bot_info = aes_crypto.decrypt(client_socket.recv(1024), session_key).decode()
 
         with lock:
             connected_bots.append({
@@ -88,7 +86,7 @@ def operator_menu():
     print(Fore.MAGENTA + "Type 'help' to see available commands.\n")
 
     while True:
-        cmd_input = input(Fore.GREEN + f"[{TOOL_NAME}] > " + Style.RESET_ALL).strip()
+        cmd_input = input(Fore.YELLOW + f"[{TOOL_NAME}] > " + Style.RESET_ALL).strip()
 
         if cmd_input.lower() in ["cls", "clear"]:
             os.system("cls" if os.name == "nt" else "clear")
