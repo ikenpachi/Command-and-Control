@@ -1,47 +1,92 @@
-# Command and Control - Python Server & Bot Client 
+# HarpiaC2 - Brazilian Command and Control Framework 🦅
 
-This repository contains a Python-based proof of concept (PoC) for a simple Command and Control (C2) framework.  
-The two Python scripts demonstrate how a bot client can execute commands on a victim’s machine and send the output back to a C2 server.
+This repository contains a Python-based proof of concept (PoC) for a lightweight and stealthy Command and Control (C2) framework named **HarpiaC2**.
+
+It demonstrates how a bot client can connect to a central operator (C2 server), receive remote shell commands, execute them on the infected machine, and return the output securely.
 
 ---
 
 ## Concept
 
-This project simulates a typical **Command and Control (C&C)** scenario used in botnets or red team operations.
+**HarpiaC2** simulates a real-world **Command and Control** scenario — typically used in **Red Team operations** and **botnet control structures**. Bots (clients) connect to the C2 server and await instructions.
 
-The **server** listens for connections from **bot clients**, which automatically connect to the C2 host and wait for instructions. Once connected, the server sends OS-level commands (e.g. `whoami`, `dir`, etc.), and the bot executes them and returns the results.
+- The **server** listens for incoming bot connections.
+- The **bot client** connects, authenticates via a secure key exchange, and awaits OS-level commands.
 
-![C2 Framework running](assets/image/print_screen_terminal.png), the server (left side) is sending commands to the bot client (right side), which executes and returns the output back.
+Once connected, operators can interact with bots, execute shell commands remotely, and receive results in real time.
 
 ---
 
-## Technologies Used
+## Preview
+
+![HarpiaC2 running](assets/image/print_screen_terminal.png)
+
+The screenshot shows:
+- Left: C2 operator issuing commands
+- Right: Bot client executing and returning the result
+
+---
+
+## 🧰 Technologies Used
 
 - Python 3.x
 - Socket Programming (`socket`)
-- Subprocess Execution (`subprocess`)
-- TCP Protocol for communication
+- Command Execution (`subprocess`)
+- Secure AES Encryption with DH Key Exchange (`cryptography`)
+- ANSI Coloring with `colorama`
 
 ---
 
 ## Project Structure
+
 ```bash
-mini_c2/
-├── c2_server.py
-├── c2_console.py
-├── bot_client.py
+HarpiaC2/
+├── multi_c2_server.py       # Main C2 controller (multi-bot)
+├── bot_client.py            # Bot implant/client
+├── c2_console.py            # Legacy console (single bot mode)
 ├── modules/
-│   └── commands.py   
+│   └── commands.py          # System info and command execution
 ├── utils/
-│   └── helpers.py      
+│   ├── aes_crypto.py        # AES encryption layer
+│   ├── key_exchange.py      # Diffie-Hellman key exchange
+│   └── helpers.py           # Banners, logging, utils
+├── assets/
+│   └── image/
+│       └── print_screen_terminal.png
+├── logs/                    # Command logs per bot
+├── .gitignore
 └── README.md
 ```
+
 ---
 
 ## How to Use
 
-1. Open two terminals.
-2. Run the server in the first one:
-
+### 1. Start the Server
+Open a terminal and run:
 ```bash
-python c2_server.py
+python multi_c2_server.py
+```
+
+### 2. Deploy a Bot Client
+On another machine or terminal, run:
+```bash
+python bot_client.py
+```
+
+The bot will connect automatically, perform key exchange, and await commands.
+
+---
+
+## Features
+
+- Multi-bot connection support ✅
+- Encrypted communication (AES/DH) ✅
+- Command execution with output ✅
+- Terminal logging by bot ✅
+- Persistent installation option ✅
+- Easy to expand and customize ✅
+
+---
+
+© 2025 – Igor | Projeto HarpiaC2 🦅

