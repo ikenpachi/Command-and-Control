@@ -1,4 +1,4 @@
-# 🧪 Command and Control - Python Server & Bot Client 
+# Command and Control - Python Server & Bot Client 
 
 This repository contains a Python-based proof of concept (PoC) for a simple Command and Control (C2) framework.  
 The two Python scripts demonstrate how a bot client can execute commands on a victim’s machine and send the output back to a C2 server.
@@ -28,6 +28,7 @@ The **server** listens for connections from **bot clients**, which automatically
 ```bash
 mini_c2/
 ├── c2_server.py
+├── c2_console.py
 ├── bot_client.py
 ├── modules/
 │   └── commands.py   
