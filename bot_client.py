@@ -22,4 +22,4 @@ def connect_to_c2():
     bot.close()
 
 if __name__ == "__main__":
-    connect_to_c2()
+    connect_to_c2() 
