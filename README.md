@@ -11,7 +11,7 @@ This project simulates a typical **Command and Control (C&C)** scenario used in 
 
 The **server** listens for connections from **bot clients**, which automatically connect to the C2 host and wait for instructions. Once connected, the server sends OS-level commands (e.g. `whoami`, `dir`, etc.), and the bot executes them and returns the results.
 
-![C2 Framework running](assets\image\print_screen_terminal.png), the server (left side) is sending commands to the bot client (right side), which executes and returns the output back.
+![C2 Framework running](assets/image/print_screen_terminal.png), the server (left side) is sending commands to the bot client (right side), which executes and returns the output back.
 
 ---
 
