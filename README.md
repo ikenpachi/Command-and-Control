@@ -54,7 +54,8 @@ HarpiaC2/
 ├── bot_client.py            # Bot implant/client
 ├── c2_console.py            # Legacy console (single bot mode)
 ├── modules/
-│   └── commands.py          # System info and command execution
+│   ├── commands.py          # System info and command execution
+│   └── recon.py             # trigger commands
 ├── utils/
 │   ├── aes_crypto.py        # AES encryption layer
 │   ├── key_exchange.py      # Diffie-Hellman key exchange

