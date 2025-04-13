@@ -1,6 +1,9 @@
 # Byte-compiled / cache
 __pycache__/
 *.pyc
+bot_client.spec
+build
+dist
 
 # Logs
 *.log

