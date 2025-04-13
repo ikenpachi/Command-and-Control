@@ -7,7 +7,7 @@
 ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝
 ```
     
-# HarpiaC2 - Brazilian Command and Control Framework 🦅
+# HarpiaC2 - Brazilian Command and Control Framework
 
 This repository contains a Python-based proof of concept (PoC) for a lightweight and stealthy Command and Control (C2) framework named **HarpiaC2**.
 
